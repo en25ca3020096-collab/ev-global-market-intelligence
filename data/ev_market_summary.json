@@ -1,0 +1,287 @@
+﻿{
+    "Overview":  {
+                     "AvgRangeKm":  495.9,
+                     "TotalRevenueUSD":  7022823720641,
+                     "TotalSalesUnits":  143252372,
+                     "AvgRating":  4.72,
+                     "TotalCarbonOffsetTons":  623371989,
+                     "AvgPriceUSD":  94194.92,
+                     "TotalRecords":  1250
+                 },
+    "Scenario1_Categories":  [
+                                 {
+                                     "Category":  "SUV",
+                                     "Sales_Units":  54191987,
+                                     "Sales_Share_Pct":  37.83,
+                                     "Revenue_USD":  3018286701817,
+                                     "Avg_Price_USD":  55265,
+                                     "Avg_Range_km":  541,
+                                     "Avg_Rating":  4.75
+                                 },
+                                 {
+                                     "Category":  "Sedan",
+                                     "Sales_Units":  36142362,
+                                     "Sales_Share_Pct":  25.23,
+                                     "Revenue_USD":  2189218728673,
+                                     "Avg_Price_USD":  65186,
+                                     "Avg_Range_km":  709,
+                                     "Avg_Rating":  4.87
+                                 },
+                                 {
+                                     "Category":  "Two-Wheeler",
+                                     "Sales_Units":  29480621,
+                                     "Sales_Share_Pct":  20.58,
+                                     "Revenue_USD":  199011859798,
+                                     "Avg_Price_USD":  6760,
+                                     "Avg_Range_km":  200,
+                                     "Avg_Rating":  4.64
+                                 },
+                                 {
+                                     "Category":  "Hatchback",
+                                     "Sales_Units":  15786732,
+                                     "Sales_Share_Pct":  11.02,
+                                     "Revenue_USD":  363195367966,
+                                     "Avg_Price_USD":  25130,
+                                     "Avg_Range_km":  444,
+                                     "Avg_Rating":  4.55
+                                 },
+                                 {
+                                     "Category":  "Truck",
+                                     "Sales_Units":  6508570,
+                                     "Sales_Share_Pct":  4.54,
+                                     "Revenue_USD":  801251209276,
+                                     "Avg_Price_USD":  120273,
+                                     "Avg_Range_km":  496,
+                                     "Avg_Rating":  4.67
+                                 },
+                                 {
+                                     "Category":  "Electric Bus",
+                                     "Sales_Units":  1142100,
+                                     "Sales_Share_Pct":  0.8,
+                                     "Revenue_USD":  451859853111,
+                                     "Avg_Price_USD":  396819,
+                                     "Avg_Range_km":  356,
+                                     "Avg_Rating":  4.65
+                                 }
+                             ],
+    "Scenario2_Manufacturers":  [
+                                    {
+                                        "Manufacturer":  "Tesla",
+                                        "Sales_Units":  25595874,
+                                        "Market_Share_Pct":  17.87,
+                                        "Revenue_USD":  1884210413938,
+                                        "Primary_Battery":  "NCA",
+                                        "Primary_Hub":  "USA",
+                                        "Avg_Rating":  4.78
+                                    },
+                                    {
+                                        "Manufacturer":  "BYD",
+                                        "Sales_Units":  21881688,
+                                        "Market_Share_Pct":  15.27,
+                                        "Revenue_USD":  735546090969,
+                                        "Primary_Battery":  "LFP",
+                                        "Primary_Hub":  "China",
+                                        "Avg_Rating":  4.69
+                                    },
+                                    {
+                                        "Manufacturer":  "Tata Motors",
+                                        "Sales_Units":  9769056,
+                                        "Market_Share_Pct":  6.82,
+                                        "Revenue_USD":  198682866925,
+                                        "Primary_Battery":  "LFP",
+                                        "Primary_Hub":  "India",
+                                        "Avg_Rating":  4.61
+                                    },
+                                    {
+                                        "Manufacturer":  "BMW",
+                                        "Sales_Units":  9686479,
+                                        "Market_Share_Pct":  6.76,
+                                        "Revenue_USD":  806467778443,
+                                        "Primary_Battery":  "NMC",
+                                        "Primary_Hub":  "Germany",
+                                        "Avg_Rating":  4.86
+                                    },
+                                    {
+                                        "Manufacturer":  "Ather Energy",
+                                        "Sales_Units":  9080281,
+                                        "Market_Share_Pct":  6.34,
+                                        "Revenue_USD":  19666807895,
+                                        "Primary_Battery":  "NMC",
+                                        "Primary_Hub":  "India",
+                                        "Avg_Rating":  4.82
+                                    },
+                                    {
+                                        "Manufacturer":  "Zero Motorcycles",
+                                        "Sales_Units":  8701494,
+                                        "Market_Share_Pct":  6.07,
+                                        "Revenue_USD":  156872766887,
+                                        "Primary_Battery":  "NMC",
+                                        "Primary_Hub":  "USA",
+                                        "Avg_Rating":  4.67
+                                    },
+                                    {
+                                        "Manufacturer":  "Volkswagen",
+                                        "Sales_Units":  8095192,
+                                        "Market_Share_Pct":  5.65,
+                                        "Revenue_USD":  413064925556,
+                                        "Primary_Battery":  "NMC",
+                                        "Primary_Hub":  "Germany",
+                                        "Avg_Rating":  4.62
+                                    },
+                                    {
+                                        "Manufacturer":  "Ola Electric",
+                                        "Sales_Units":  7211908,
+                                        "Market_Share_Pct":  5.03,
+                                        "Revenue_USD":  12295626743,
+                                        "Primary_Battery":  "NMC",
+                                        "Primary_Hub":  "India",
+                                        "Avg_Rating":  4.5
+                                    },
+                                    {
+                                        "Manufacturer":  "Hyundai",
+                                        "Sales_Units":  6232627,
+                                        "Market_Share_Pct":  4.35,
+                                        "Revenue_USD":  334320086368,
+                                        "Primary_Battery":  "NMC",
+                                        "Primary_Hub":  "South Korea",
+                                        "Avg_Rating":  4.76
+                                    },
+                                    {
+                                        "Manufacturer":  "Volvo",
+                                        "Sales_Units":  5909542,
+                                        "Market_Share_Pct":  4.13,
+                                        "Revenue_USD":  396946074812,
+                                        "Primary_Battery":  "NMC",
+                                        "Primary_Hub":  "Sweden",
+                                        "Avg_Rating":  4.8
+                                    },
+                                    {
+                                        "Manufacturer":  "NIO",
+                                        "Sales_Units":  5715967,
+                                        "Market_Share_Pct":  3.99,
+                                        "Revenue_USD":  359480978159,
+                                        "Primary_Battery":  "NMC",
+                                        "Primary_Hub":  "China",
+                                        "Avg_Rating":  4.85
+                                    },
+                                    {
+                                        "Manufacturer":  "Kia",
+                                        "Sales_Units":  5702409,
+                                        "Market_Share_Pct":  3.98,
+                                        "Revenue_USD":  305882922390,
+                                        "Primary_Battery":  "NMC",
+                                        "Primary_Hub":  "South Korea",
+                                        "Avg_Rating":  4.85
+                                    },
+                                    {
+                                        "Manufacturer":  "Yadea",
+                                        "Sales_Units":  4486938,
+                                        "Market_Share_Pct":  3.13,
+                                        "Revenue_USD":  10176658273,
+                                        "Primary_Battery":  "Sodium-Ion",
+                                        "Primary_Hub":  "China",
+                                        "Avg_Rating":  4.41
+                                    },
+                                    {
+                                        "Manufacturer":  "Mercedes-Benz",
+                                        "Sales_Units":  4288857,
+                                        "Market_Share_Pct":  2.99,
+                                        "Revenue_USD":  521045418376,
+                                        "Primary_Battery":  "NMC",
+                                        "Primary_Hub":  "Germany",
+                                        "Avg_Rating":  4.81
+                                    },
+                                    {
+                                        "Manufacturer":  "Rivian",
+                                        "Sales_Units":  4185340,
+                                        "Market_Share_Pct":  2.92,
+                                        "Revenue_USD":  343029747932,
+                                        "Primary_Battery":  "NCA",
+                                        "Primary_Hub":  "USA",
+                                        "Avg_Rating":  4.83
+                                    },
+                                    {
+                                        "Manufacturer":  "Ford",
+                                        "Sales_Units":  3769619,
+                                        "Market_Share_Pct":  2.63,
+                                        "Revenue_USD":  185547371467,
+                                        "Primary_Battery":  "NMC",
+                                        "Primary_Hub":  "USA",
+                                        "Avg_Rating":  4.56
+                                    },
+                                    {
+                                        "Manufacturer":  "Geely",
+                                        "Sales_Units":  2093295,
+                                        "Market_Share_Pct":  1.46,
+                                        "Revenue_USD":  51647463714,
+                                        "Primary_Battery":  "LFP",
+                                        "Primary_Hub":  "China",
+                                        "Avg_Rating":  4.44
+                                    },
+                                    {
+                                        "Manufacturer":  "Scania",
+                                        "Sales_Units":  702393,
+                                        "Market_Share_Pct":  0.49,
+                                        "Revenue_USD":  211345540784,
+                                        "Primary_Battery":  "NMC",
+                                        "Primary_Hub":  "Sweden",
+                                        "Avg_Rating":  4.69
+                                    },
+                                    {
+                                        "Manufacturer":  "Proterra",
+                                        "Sales_Units":  143413,
+                                        "Market_Share_Pct":  0.1,
+                                        "Revenue_USD":  76594181010,
+                                        "Primary_Battery":  "NMC",
+                                        "Primary_Hub":  "USA",
+                                        "Avg_Rating":  4.6
+                                    }
+                                ],
+    "Scenario3_Batteries":  [
+                                {
+                                    "Battery_Tech":  "Solid-State",
+                                    "Record_Count":  30,
+                                    "Adoption_Share_Pct":  1.94,
+                                    "Avg_Range_km":  815,
+                                    "Avg_Capacity_kWh":  253.6,
+                                    "Efficiency_km_per_kWh":  4.99,
+                                    "Avg_Charge_Time_Min":  23
+                                },
+                                {
+                                    "Battery_Tech":  "NCA",
+                                    "Record_Count":  133,
+                                    "Adoption_Share_Pct":  15.64,
+                                    "Avg_Range_km":  642.5,
+                                    "Avg_Capacity_kWh":  111.2,
+                                    "Efficiency_km_per_kWh":  6.12,
+                                    "Avg_Charge_Time_Min":  32
+                                },
+                                {
+                                    "Battery_Tech":  "NMC",
+                                    "Record_Count":  669,
+                                    "Adoption_Share_Pct":  49.74,
+                                    "Avg_Range_km":  512.2,
+                                    "Avg_Capacity_kWh":  145.5,
+                                    "Efficiency_km_per_kWh":  9.99,
+                                    "Avg_Charge_Time_Min":  41
+                                },
+                                {
+                                    "Battery_Tech":  "LFP",
+                                    "Record_Count":  388,
+                                    "Adoption_Share_Pct":  28.2,
+                                    "Avg_Range_km":  410.6,
+                                    "Avg_Capacity_kWh":  93.7,
+                                    "Efficiency_km_per_kWh":  9.37,
+                                    "Avg_Charge_Time_Min":  32
+                                },
+                                {
+                                    "Battery_Tech":  "Sodium-Ion",
+                                    "Record_Count":  30,
+                                    "Adoption_Share_Pct":  4.48,
+                                    "Avg_Range_km":  266.6,
+                                    "Avg_Capacity_kWh":  21,
+                                    "Efficiency_km_per_kWh":  23.74,
+                                    "Avg_Charge_Time_Min":  46
+                                }
+                            ]
+}
