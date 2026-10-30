@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Global EV Industry Intelligence Suite</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    :root {
+      --primary: #2563eb;
+      --primary-dark: #1d4ed8;
+      --secondary: #0d9488;
+      --accent: #f59e0b;
+      --bg-dark: #0f172a;
+      --card-bg: #1e293b;
+      --card-border: #334155;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --success: #10b981;
+      --font-stack: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      font-family: var(--font-stack);
+      line-height: 1.5;
+      padding-bottom: 50px;
+    }
+
+    header {
+      background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+      border-bottom: 1px solid var(--card-border);
+      padding: 24px 32px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .brand-title h1 {
+      font-size: 24px;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .brand-title h1 span {
+      background: linear-gradient(90deg, #60a5fa, #34d399);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .brand-title p {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    .controls-bar {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    select, button {
+      background-color: var(--card-bg);
+      color: var(--text-main);
+      border: 1px solid var(--card-border);
+      padding: 8px 14px;
+      border-radius: 8px;
+      font-size: 13px;
+      cursor: pointer;
+      outline: none;
+      transition: all 0.2s ease;
+    }
+    select:hover, button:hover {
+      border-color: var(--primary);
+    }
+    button.primary-btn {
+      background-color: var(--primary);
+      border-color: var(--primary);
+      font-weight: 600;
+    }
+    button.primary-btn:hover {
+      background-color: var(--primary-dark);
+    }
+
+    .nav-tabs {
+      display: flex;
+      background-color: #111827;
+      border-bottom: 1px solid var(--card-border);
+      padding: 0 32px;
+      overflow-x: auto;
+    }
+    .tab-btn {
+      padding: 16px 20px;
+      background: none;
+      border: none;
+      border-bottom: 2px solid transparent;
+      border-radius: 0;
+      color: var(--text-muted);
+      font-size: 14px;
+      font-weight: 500;
+      white-space: nowrap;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .tab-btn:hover {
+      color: var(--text-main);
+      border-color: transparent;
+    }
+    .tab-btn.active {
+      color: #60a5fa;
+      border-bottom-color: #60a5fa;
+      font-weight: 600;
+      background: rgba(96, 165, 250, 0.05);
+    }
+
+    .main-container {
+      max-width: 1400px;
+      margin: 24px auto;
+      padding: 0 24px;
+    }
+
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .kpi-card {
+      background-color: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 20px;
+      position: relative;
+      overflow: hidden;
+    }
+    .kpi-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      background: var(--primary);
+    }
+    .kpi-card.green::before { background: var(--success); }
+    .kpi-card.amber::before { background: var(--accent); }
+    .kpi-card.teal::before { background: var(--secondary); }
+
+    .kpi-label {
+      font-size: 12px;
+      text-transform: uppercase;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      color: var(--text-muted);
+    }
+    .kpi-value {
+      font-size: 26px;
+      font-weight: 700;
+      margin: 8px 0 4px 0;
+      color: #ffffff;
+    }
+    .kpi-delta {
+      font-size: 12px;
+      color: var(--success);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .charts-grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-bottom: 24px;
+    }
+    @media (max-width: 900px) {
+      .charts-grid-2 { grid-template-columns: 1fr; }
+    }
+
+    .chart-card {
+      background-color: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 20px;
+    }
+    .chart-card h3 {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 4px;
+      color: #ffffff;
+    }
+    .chart-card p.subtitle {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+    }
+    .chart-wrapper {
+      position: relative;
+      height: 320px;
+      width: 100%;
+    }
+
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+
+    .table-responsive {
+      overflow-x: auto;
+      margin-top: 16px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+    th, td {
+      padding: 12px 14px;
+      text-align: left;
+      border-bottom: 1px solid var(--card-border);
+    }
+    th {
+      background-color: #111827;
+      color: var(--text-muted);
+      font-weight: 600;
+      text-transform: uppercase;
+      font-size: 11px;
+    }
+    tr:hover td {
+      background-color: rgba(255,255,255,0.02);
+    }
+    .badge {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: 600;
+    }
+    .badge-blue { background: rgba(37,99,235,0.2); color: #60a5fa; }
+    .badge-green { background: rgba(16,185,129,0.2); color: #34d399; }
+    .badge-amber { background: rgba(245,158,11,0.2); color: #fbbf24; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="brand-title">
+      <h1>⚡ Global EV Industry <span>Intelligence Suite</span></h1>
+      <p>Multi-Persona Tableau Analytical Mirror & Executive Decision Portal</p>
+    </div>
+    <div class="controls-bar">
+      <select id="metricSelector" onchange="updateMetric()">
+        <option value="sales">Metric: Annual Sales (Units)</option>
+        <option value="revenue">Metric: Gross Revenue (USD $)</option>
+      </select>
+      <a href="EV_Global_Market_Intelligence.twbx" download class="primary-btn" style="text-decoration:none; display:inline-flex; align-items:center; gap:6px; font-size:13px;">📊 Tableau (.twbx)</a>
+      <a href="data/ev_market_dataset.csv" download class="primary-btn" style="background:#0d9488; border-color:#0d9488; text-decoration:none; display:inline-flex; align-items:center; gap:6px; font-size:13px;">📥 Dataset (CSV)</a>
+    </div>
+  </header>
+
+  <nav class="nav-tabs">
+    <button class="tab-btn active" onclick="switchTab('emily')">
+      📊 Scenario 1: Emily Johnson (Market Strategy)
+    </button>
+    <button class="tab-btn" onclick="switchTab('david')">
+      🏢 Scenario 2: David Chen (OEM & Manufacturing BI)
+    </button>
+    <button class="tab-btn" onclick="switchTab('sarah')">
+      🔋 Scenario 3: Dr. Sarah Williams (Battery Innovation)
+    </button>
+  </nav>
+
+  <main class="main-container">
+
+    <!-- SCENARIO 1: EMILY JOHNSON -->
+    <div id="emily" class="tab-content active">
+      <div class="kpi-grid">
+        <div class="kpi-card">
+          <div class="kpi-label">Cumulative Sales</div>
+          <div class="kpi-value" id="kpi-sales">143,252,372</div>
+          <div class="kpi-delta">▲ +32.4% Annual CAGR (2021–2025)</div>
+        </div>
+        <div class="kpi-card teal">
+          <div class="kpi-label">Market Revenue</div>
+          <div class="kpi-value">$7.02 Trillion</div>
+          <div class="kpi-delta">▲ Highest in Electric SUVs & Sedans</div>
+        </div>
+        <div class="kpi-card green">
+          <div class="kpi-label">Average Range</div>
+          <div class="kpi-value">495.9 km</div>
+          <div class="kpi-delta">▲ Sedans benchmark at 709 km</div>
+        </div>
+        <div class="kpi-card amber">
+          <div class="kpi-label">Customer Satisfaction</div>
+          <div class="kpi-value">4.72 / 5.0</div>
+          <div class="kpi-delta">★ 94.4% positive sentiment index</div>
+        </div>
+      </div>
+
+      <div class="charts-grid-2">
+        <div class="chart-card">
+          <h3>Annual Sales by Vehicle Category</h3>
+          <p class="subtitle">Electric SUVs and Sedans comprise over 63% of total global market share</p>
+          <div class="chart-wrapper">
+            <canvas id="categorySalesChart"></canvas>
+          </div>
+        </div>
+        <div class="chart-card">
+          <h3>Price vs. Customer Satisfaction Matrix</h3>
+          <p class="subtitle">Average MSRP ($) plotted against Verified Customer Rating (1-5)</p>
+          <div class="chart-wrapper">
+            <canvas id="satisfactionScatterChart"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <div class="chart-card">
+        <h3>Category Performance Breakdown</h3>
+        <p class="subtitle">Executive metrics for product portfolio optimization</p>
+        <div class="table-responsive">
+          <table>
+            <thead>
+              <tr>
+                <th>Category</th>
+                <th>Cumulative Sales (Units)</th>
+                <th>Market Share %</th>
+                <th>Avg Selling Price</th>
+                <th>Avg Driving Range</th>
+                <th>Customer Rating</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td><strong>SUV</strong></td><td>54,191,987</td><td><span class="badge badge-blue">37.83%</span></td><td>$55,265</td><td>541 km</td><td>4.75 / 5.0</td></tr>
+              <tr><td><strong>Sedan</strong></td><td>36,142,362</td><td><span class="badge badge-blue">25.23%</span></td><td>$65,186</td><td>709 km</td><td>4.87 / 5.0</td></tr>
+              <tr><td><strong>Two-Wheeler</strong></td><td>29,480,621</td><td><span class="badge badge-green">20.58%</span></td><td>$6,760</td><td>200 km</td><td>4.64 / 5.0</td></tr>
+              <tr><td><strong>Hatchback</strong></td><td>15,786,732</td><td><span class="badge badge-amber">11.02%</span></td><td>$25,130</td><td>444 km</td><td>4.55 / 5.0</td></tr>
+              <tr><td><strong>Truck</strong></td><td>6,508,570</td><td>4.54%</td><td>$120,273</td><td>496 km</td><td>4.67 / 5.0</td></tr>
+              <tr><td><strong>Electric Bus</strong></td><td>1,142,100</td><td>0.80%</td><td>$396,819</td><td>356 km</td><td>4.65 / 5.0</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- SCENARIO 2: DAVID CHEN -->
+    <div id="david" class="tab-content">
+      <div class="kpi-grid">
+        <div class="kpi-card">
+          <div class="kpi-label">Global Leader</div>
+          <div class="kpi-value">Tesla (17.87%)</div>
+          <div class="kpi-delta">25.6M Units sold globally</div>
+        </div>
+        <div class="kpi-card teal">
+          <div class="kpi-label">Leading Challenger</div>
+          <div class="kpi-value">BYD (15.27%)</div>
+          <div class="kpi-delta">21.8M Units (LFP Chemistry Lead)</div>
+        </div>
+        <div class="kpi-card green">
+          <div class="kpi-label">Top Manufacturing Hub</div>
+          <div class="kpi-value">China & USA</div>
+          <div class="kpi-delta">Over 62% combined global production</div>
+        </div>
+        <div class="kpi-card amber">
+          <div class="kpi-label">Fastest Growing Region</div>
+          <div class="kpi-value">India (Tata & 2W)</div>
+          <div class="kpi-delta">Over 18M units in 2W/Compact EV</div>
+        </div>
+      </div>
+
+      <div class="charts-grid-2">
+        <div class="chart-card">
+          <h3>Top 10 Manufacturers by Market Share</h3>
+          <p class="subtitle">Global unit volume distribution across automotive OEMs</p>
+          <div class="chart-wrapper">
+            <canvas id="oemShareChart"></canvas>
+          </div>
+        </div>
+        <div class="chart-card">
+          <h3>Geographical Production Volumes</h3>
+          <p class="subtitle">Vehicle units produced by primary assembly country</p>
+          <div class="chart-wrapper">
+            <canvas id="geoProdChart"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SCENARIO 3: DR. SARAH WILLIAMS -->
+    <div id="sarah" class="tab-content">
+      <div class="kpi-grid">
+        <div class="kpi-card green">
+          <div class="kpi-label">Frontier Chemistry</div>
+          <div class="kpi-value">Solid-State</div>
+          <div class="kpi-delta">815 km Avg Range | 23 min charge</div>
+        </div>
+        <div class="kpi-card teal">
+          <div class="kpi-label">Mainstream Standard</div>
+          <div class="kpi-value">NMC (49.7%)</div>
+          <div class="kpi-delta">512 km Avg Range | 145 kWh Cap</div>
+        </div>
+        <div class="kpi-card amber">
+          <div class="kpi-label">Cost-Effective Workhorse</div>
+          <div class="kpi-value">LFP (28.2%)</div>
+          <div class="kpi-delta">410 km Range | Cobalt-free</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Total CO2 Abatement</div>
+          <div class="kpi-value">623.4 Mt</div>
+          <div class="kpi-delta">Million Metric Tons CO2 avoided</div>
+        </div>
+      </div>
+
+      <div class="charts-grid-2">
+        <div class="chart-card">
+          <h3>Battery Chemistry Driving Range Comparison (km)</h3>
+          <p class="subtitle">Solid-State and NCA lead performance benchmarks</p>
+          <div class="chart-wrapper">
+            <canvas id="batteryRangeChart"></canvas>
+          </div>
+        </div>
+        <div class="chart-card">
+          <h3>Energy Efficiency Ratio (km / kWh)</h3>
+          <p class="subtitle">Sodium-Ion delivers maximum urban efficiency (23.7 km/kWh)</p>
+          <div class="chart-wrapper">
+            <canvas id="batteryEfficiencyChart"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <script>
+    // Tab Switching Logic
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+      event.currentTarget.classList.add('active');
+      document.getElementById(tabId).classList.add('active');
+    }
+
+    function exportDataNotice() {
+      alert("Dataset ready: ev_market_dataset.csv (1,250 records) located at data/ev_market_dataset.csv");
+    }
+
+    // Chart.js Palette
+    const colors = {
+      blue: '#3b82f6',
+      teal: '#0d9488',
+      amber: '#f59e0b',
+      purple: '#8b5cf6',
+      green: '#10b981',
+      pink: '#ec4899',
+      slate: '#64748b'
+    };
+
+    // Chart 1: Category Sales
+    new Chart(document.getElementById('categorySalesChart'), {
+      type: 'bar',
+      data: {
+        labels: ['SUV', 'Sedan', 'Two-Wheeler', 'Hatchback', 'Truck', 'Electric Bus'],
+        datasets: [{
+          label: 'Sales Units',
+          data: [54191987, 36142362, 29480621, 15786732, 6508570, 1142100],
+          backgroundColor: [colors.blue, colors.teal, colors.amber, colors.purple, colors.slate, colors.green],
+          borderRadius: 6
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: { legend: { display: false } },
+        scales: {
+          x: { grid: { color: '#334155' }, ticks: { color: '#94a3b8' } },
+          y: { grid: { color: '#334155' }, ticks: { color: '#94a3b8' } }
+        }
+      }
+    });
+
+    // Chart 2: Price vs Satisfaction Scatter
+    new Chart(document.getElementById('satisfactionScatterChart'), {
+      type: 'bubble',
+      data: {
+        datasets: [
+          { label: 'SUV', data: [{ x: 55265, y: 4.75, r: 18 }], backgroundColor: colors.blue },
+          { label: 'Sedan', data: [{ x: 65186, y: 4.87, r: 15 }], backgroundColor: colors.teal },
+          { label: 'Two-Wheeler', data: [{ x: 6760, y: 4.64, r: 14 }], backgroundColor: colors.amber },
+          { label: 'Hatchback', data: [{ x: 25130, y: 4.55, r: 10 }], backgroundColor: colors.purple },
+          { label: 'Truck', data: [{ x: 120273, y: 4.67, r: 8 }], backgroundColor: colors.slate },
+          { label: 'Electric Bus', data: [{ x: 396819, y: 4.65, r: 6 }], backgroundColor: colors.green }
+        ]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+          x: { title: { display: true, text: 'Average Price ($)', color: '#94a3b8' }, grid: { color: '#334155' }, ticks: { color: '#94a3b8' } },
+          y: { min: 4.4, max: 5.0, title: { display: true, text: 'Customer Rating (1-5)', color: '#94a3b8' }, grid: { color: '#334155' }, ticks: { color: '#94a3b8' } }
+        },
+        plugins: { legend: { labels: { color: '#cbd5e1' } } }
+      }
+    });
+
+    // Chart 3: Top 10 OEMs
+    new Chart(document.getElementById('oemShareChart'), {
+      type: 'bar',
+      data: {
+        labels: ['Tesla', 'BYD', 'Tata Motors', 'BMW', 'Ather Energy', 'Zero Moto', 'VW', 'Ola Electric', 'Hyundai', 'Volvo'],
+        datasets: [{
+          label: 'Market Share %',
+          data: [17.87, 15.27, 6.82, 6.76, 6.34, 6.07, 5.65, 5.03, 4.35, 4.13],
+          backgroundColor: '#38bdf8',
+          borderRadius: 4
+        }]
+      },
+      options: {
+        indexAxis: 'y',
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: { legend: { display: false } },
+        scales: {
+          x: { grid: { color: '#334155' }, ticks: { color: '#94a3b8', callback: v => v + '%' } },
+          y: { grid: { color: '#334155' }, ticks: { color: '#94a3b8' } }
+        }
+      }
+    });
+
+    // Chart 4: Geographical Hubs
+    new Chart(document.getElementById('geoProdChart'), {
+      type: 'doughnut',
+      data: {
+        labels: ['China', 'USA', 'Germany', 'India', 'South Korea', 'Sweden'],
+        datasets: [{
+          data: [38.5, 27.2, 14.8, 12.3, 5.1, 2.1],
+          backgroundColor: [colors.amber, colors.blue, colors.slate, colors.green, colors.purple, colors.teal]
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: { legend: { position: 'right', labels: { color: '#cbd5e1' } } }
+      }
+    });
+
+    // Chart 5: Battery Range
+    new Chart(document.getElementById('batteryRangeChart'), {
+      type: 'bar',
+      data: {
+        labels: ['Solid-State', 'NCA', 'NMC', 'LFP', 'Sodium-Ion'],
+        datasets: [{
+          label: 'Average Range (km)',
+          data: [815.0, 642.5, 512.2, 410.6, 266.6],
+          backgroundColor: [colors.green, colors.purple, colors.blue, colors.amber, colors.pink],
+          borderRadius: 6
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: { legend: { display: false } },
+        scales: {
+          x: { grid: { color: '#334155' }, ticks: { color: '#94a3b8' } },
+          y: { grid: { color: '#334155' }, ticks: { color: '#94a3b8' } }
+        }
+      }
+    });
+
+    // Chart 6: Battery Efficiency
+    new Chart(document.getElementById('batteryEfficiencyChart'), {
+      type: 'bar',
+      data: {
+        labels: ['Sodium-Ion', 'NMC', 'LFP', 'NCA', 'Solid-State'],
+        datasets: [{
+          label: 'km / kWh',
+          data: [23.74, 9.99, 9.37, 6.12, 4.99],
+          backgroundColor: [colors.pink, colors.blue, colors.amber, colors.purple, colors.green],
+          borderRadius: 6
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: { legend: { display: false } },
+        scales: {
+          x: { grid: { color: '#334155' }, ticks: { color: '#94a3b8' } },
+          y: { grid: { color: '#334155' }, ticks: { color: '#94a3b8' } }
+        }
+      }
+    });
+  </script>
+</body>
+</html>
